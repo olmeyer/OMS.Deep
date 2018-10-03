@@ -1,2 +1,5 @@
 /Source/.vs
 /Build/.vs/Build/v15/*.suo
+/Delivery
+/Source/OMS.Deep.Cache/bin
+/Source/OMS.Deep.Cache/obj
