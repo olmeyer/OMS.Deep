@@ -1,0 +1,8 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileDCC890DF1575BA41B837AA03BD34145E/@KeyIndexDefined">True</s:Boolean>
+	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileDCC890DF1575BA41B837AA03BD34145E/RelativePriority/@EntryValue">2</s:Double>
+	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File_003A_003AF_003A_005CProjects_005CPrivate_005COMS_002EDeep_005Ctrunk_005CSource_005COMS_002EDeep_0020StyleGuide_002EDotSettings/RelativePriority/@EntryValue">1</s:Double>
+	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File_003A_003AF_003A_005CProjects_005CPrivate_005COMS_002EDeep_005Ctrunk_005CSource_005COMS_002EDeep_0020StyleGuide_002EDotSettings/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=DCC890DF1575BA41B837AA03BD34145E/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=DCC890DF1575BA41B837AA03BD34145E/RelativePath/@EntryValue">..\OMS.Deep StyleGuide.DotSettings</s:String>
+	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=DCC890DF1575BA41B837AA03BD34145E/AbsolutePath/@EntryValue">F:\Projects\Private\OMS.Deep\trunk\Source\OMS.Deep StyleGuide.DotSettings</s:String></wpf:ResourceDictionary>

@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2019
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OMS.Deep.Cache", "OMS.Deep.Cache\OMS.Deep.Cache.csproj", "{06303396-D3ED-4349-A0B6-4E05753881C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{95B0D9E6-0F1F-4C80-87C2-65B3ABE90062}"
+	ProjectSection(SolutionItems) = preProject
+		..\NuGet\omsdeep.nuspec = ..\NuGet\omsdeep.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{5571F950-F84E-41A2-A397-A750048ED22B}"
+	ProjectSection(SolutionItems) = preProject
+		Build\CopyToDelivery.proj_ = Build\CopyToDelivery.proj_
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{06303396-D3ED-4349-A0B6-4E05753881C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06303396-D3ED-4349-A0B6-4E05753881C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06303396-D3ED-4349-A0B6-4E05753881C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06303396-D3ED-4349-A0B6-4E05753881C4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {79F4CA13-0CA2-445F-9D84-E8361F07B353}
+	EndGlobalSection
+EndGlobal

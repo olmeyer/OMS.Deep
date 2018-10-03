@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project DefaultTargets="RemoveFolders" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.5">
+
+	<!-- Imports -->
+	<Import Project=".\Directories.proj"/>
+
+	<Target Name="RemoveFolders">
+
+     <!-- Delete bin folder. -->
+		<Exec Command='rd /S /Q "$(BinDir)\$(Configuration)"' />
+
+     <!-- Delete delivery folder. -->
+    <Exec Command='rd /S /Q "$(DeliveryDir)\$(Configuration)"' />
+
+  </Target>
+
+</Project>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>OMS.Deep</id>
+    <version>3.0.0</version>
+    <authors>Olaf Meyer</authors>
+    <owners>Olaf Meyer</owners>
+    <licenseUrl>https://github.com/olmeyer/OMS.Deep/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/olmeyer/OMS.Deep/</projectUrl>
+    <title>OMS.Deep - Weak Reference Cache</title>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>OMS.Deep is a weak reference cache.</description>
+    <tags>Weak Reference Cache</tags>
+  </metadata>
+</package>
