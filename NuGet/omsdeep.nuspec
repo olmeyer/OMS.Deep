@@ -4,7 +4,7 @@
     <id>OMS.Deep</id>
     <authors>Olaf Meyer</authors>
     <owners>Olaf Meyer</owners>
-    <licenseUrl>https://github.com/olmeyer/OMS.Deep/LICENSE</licenseUrl>
+    <licenseUrl>https://github.com/olmeyer/OMS.Deep/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/olmeyer/OMS.Deep/</projectUrl>
     <title>OMS.Deep - Weak Reference Cache</title>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
