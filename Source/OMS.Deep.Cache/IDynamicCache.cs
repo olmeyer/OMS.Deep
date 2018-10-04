@@ -3,7 +3,8 @@ namespace OMS.Deep.Cache
     /// <summary>
     ///     The dynamic cache holds key value pairs whereby the value is hold as a weak reference. If there is no more
     ///     outstanding reference to a cache entry, it will be automatically removed from the cache. Further, the cache checks,
-    ///     how frequently an object is requested. Frequently used objects will get a high counter value and therefore will not be removed immediately
+    ///     how frequently an object is requested. Frequently used objects will get a high counter value and therefore will not
+    ///     be removed immediately
     ///     from the cache if there are no references to this object.
     /// </summary>
     /// <typeparam name="TKey"> The key type. </typeparam>

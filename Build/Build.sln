@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build Scripts", "Build Scri
 		Directories.proj = Directories.proj
 		PushNuGetPackage.proj = PushNuGetPackage.proj
 		RemoveFolders.proj = RemoveFolders.proj
+		Version.proj = Version.proj
 	EndProjectSection
 EndProject
 Global

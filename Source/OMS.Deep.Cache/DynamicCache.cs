@@ -38,6 +38,24 @@ namespace OMS.Deep.Cache
         }
 
 
+        protected override bool OnTestReference( CachedCounterReference<TValue> reference )
+        {
+            return (reference.Decrement() > 0);
+        }
+
+
+        protected override CachedCounterReference<TValue> CreateCachedReference( TValue target )
+        {
+            return new CachedCounterReference<TValue>( target, _counterValues );
+        }
+
+
+        protected override void OnGetReference( CachedCounterReference<TValue> reference )
+        {
+            reference.Increment();
+        }
+
+
         #region IDynamicCache<TKey,TValue> Members
 
         void ICache<TKey, TValue>.Add( TKey key, TValue value )
@@ -69,10 +87,7 @@ namespace OMS.Deep.Cache
         }
 
 
-        object ICache<TKey, TValue>.SyncRoot
-        {
-            get { return SyncRoot; }
-        }
+        object ICache<TKey, TValue>.SyncRoot => SyncRoot;
 
 
         void ICache<TKey, TValue>.Clear()
@@ -98,29 +113,8 @@ namespace OMS.Deep.Cache
         }
 
 
-        CounterValues IDynamicCache<TKey, TValue>.CounterValues
-        {
-            get { return _counterValues; }
-        }
+        CounterValues IDynamicCache<TKey, TValue>.CounterValues => _counterValues;
 
         #endregion
-
-
-        protected override bool OnTestReference( CachedCounterReference<TValue> reference )
-        {
-            return (reference.Decrement() > 0);
-        }
-
-
-        protected override CachedCounterReference<TValue> CreateCachedReference( TValue target )
-        {
-            return new CachedCounterReference<TValue>( target, _counterValues );
-        }
-
-
-        protected override void OnGetReference( CachedCounterReference<TValue> reference )
-        {
-            reference.Increment();
-        }
     }
 }

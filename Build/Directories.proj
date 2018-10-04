@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.5">
-
-  <Import Project="Base.proj"/>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
 
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -42,9 +40,6 @@
 
     <!-- Nuget folder-->
     <NuGetDir>$(RootDir)\NuGet</NuGetDir>
-
-    <!-- Nuget folder-->
-    <LicenseDir>$(RootDir)\Licenses</LicenseDir>
 
   </PropertyGroup>
 

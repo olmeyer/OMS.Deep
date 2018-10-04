@@ -1,5 +1,10 @@
+#region
+
 using System;
 using System.Collections.Generic;
+
+#endregion
+
 
 namespace OMS.Deep.Cache
 {
@@ -26,12 +31,11 @@ namespace OMS.Deep.Cache
         void Collect();
 
         event EventHandler<ObjectRemovedEventArgs<IEnumerable<TKey>>> ObjectRemoved;
-
-   }
+    }
 
     public class ObjectRemovedEventArgs<TKey> : EventArgs
     {
-        public ObjectRemovedEventArgs(TKey key)
+        public ObjectRemovedEventArgs( TKey key )
         {
             Key = key;
         }
@@ -39,4 +43,3 @@ namespace OMS.Deep.Cache
         public TKey Key { get; private set; }
     }
 }
-

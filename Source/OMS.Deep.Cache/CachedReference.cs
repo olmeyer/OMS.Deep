@@ -20,8 +20,8 @@ namespace OMS.Deep.Cache
 
         internal new TValue Target
         {
-            get { return (TValue)base.Target; }
-            set { base.Target = value; }
+            get => (TValue)base.Target;
+            set => base.Target = value;
         }
     }
 }

@@ -3,10 +3,9 @@
 
   <ItemGroup>
     
-    <!-- Ribbon -->
     <CopyDelivery Include="..\OMS.Deep.Cache\bin\$(Configuration)\netstandard2.0\OMS.Deep.Cache.dll" />
     <CopyDelivery Include="..\OMS.Deep.Cache\bin\$(Configuration)\netstandard2.0\OMS.Deep.Cache.pdb" />
-    <CopyDelivery Include="..\OMS.Deep.Cache\bin\$(Configuration)\netstandard2.0\OMS.Deep.Cache.pdb" />
+    <CopyDelivery Include="..\..\LICENSE" />
 
   </ItemGroup>
 

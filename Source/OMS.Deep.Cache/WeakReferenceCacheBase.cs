@@ -21,22 +21,22 @@ namespace OMS.Deep.Cache
         where TValue : class
         where TReference : CachedReference<TValue>
     {
-        private const uint DEFAULT_PERIOD = 60000;
+        private const uint DefaultPeriod = 60000;
         private bool _autoCollect;
         private IDictionary<TKey, TReference> _cache;
         private Timer _collectionTimer;
-        private uint _period = DEFAULT_PERIOD;
+        private uint _period = DefaultPeriod;
 
         protected WeakReferenceCacheBase( string id )
             : base( id )
         {
-            Initialize( true, DEFAULT_PERIOD );
+            Initialize( true, DefaultPeriod );
         }
 
         protected WeakReferenceCacheBase( bool autoCollect, string id )
             : base( id )
         {
-            Initialize( autoCollect, DEFAULT_PERIOD );
+            Initialize( autoCollect, DefaultPeriod );
         }
 
         protected WeakReferenceCacheBase( uint period, string id )
@@ -47,7 +47,7 @@ namespace OMS.Deep.Cache
 
         protected bool AutoCollect
         {
-            get { return _autoCollect; }
+            get => _autoCollect;
             set
             {
                 lock( SyncRoot )
@@ -93,8 +93,7 @@ namespace OMS.Deep.Cache
             var result = new List<TKey>();
             foreach( var key in keys )
             {
-                TValue itemValue;
-                if( !TryGetValue( key, out itemValue ) )
+                if( !TryGetValue( key, out var itemValue ) )
                     continue;
 
                 if( ReferenceEquals( itemValue, value ) || itemValue.Equals( value ) )
@@ -124,35 +123,28 @@ namespace OMS.Deep.Cache
         {
             var found = false;
             value = null;
-            try
+            lock( SyncRoot )
             {
-                lock( SyncRoot )
+                if( _cache.TryGetValue( key, out var reference ) )
                 {
-                    TReference reference;
-                    if( _cache.TryGetValue( key, out reference ) )
+                    // Assign the reference to a lokal object before calling IsAlive().
+                    // Otherwise the garbage collector could dispose the object between
+                    // the calls to IsAlive and Target.
+                    var localValue = reference.Target;
+                    if( reference.IsAlive )
                     {
-                        // Assign the reference to a lokal object before calling IsAlive().
-                        // Otherwise the garbage collector could dispose the object between
-                        // the calls to IsAlive and Target.
-                        var localValue = reference.Target;
-                        if( reference.IsAlive )
-                        {
-                            found = true;
-                            OnGetReference( reference );
-                            value = localValue;
-                        }
-                        else
-                        {
-                            // Object is not valid. Removed it from the dictionary.
-                            Remove( key );
-                        }
+                        found = true;
+                        OnGetReference( reference );
+                        value = localValue;
                     }
-                    return found;
+                    else
+                    {
+                        // Object is not valid. Removed it from the dictionary.
+                        Remove( key );
+                    }
                 }
-            }
-            catch( Exception )
-            {
-                throw;
+
+                return found;
             }
         }
 
@@ -163,8 +155,7 @@ namespace OMS.Deep.Cache
                 _cache.Remove( key );
                 if( AutoDisposeKey )
                 {
-                    var disposable = key as IDisposable;
-                    if( disposable != null )
+                    if( key is IDisposable disposable )
                         disposable.Dispose();
                 }
             }
@@ -216,7 +207,7 @@ namespace OMS.Deep.Cache
             if( enable )
             {
                 _collectionTimer = new Timer( Collect, null, 0
-                    , (_period > 0) ? (int)_period : (int)DEFAULT_PERIOD );
+                                             , (_period > 0) ? (int)_period : (int)DefaultPeriod );
             }
             else
             {
@@ -231,7 +222,7 @@ namespace OMS.Deep.Cache
         private void Collect( object stateInfo )
         {
 #if FORCE_COLLECT && DEBUG
-    // TODO: Make this configurable. (Is that really needed?)
+// TODO: Make this configurable. (Is that really needed?)
 			GC.Collect(3, GCCollectionMode.Forced);
 #endif
             // FORCE_COLLECT && DEBUG

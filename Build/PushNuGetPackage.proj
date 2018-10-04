@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Project DefaultTargets="PushNuGetPackage" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.5">
+<Project DefaultTargets="PushNuGetPackage" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
 
-  <Import Project="Directories.proj"/>
+  <Import Project="Base.proj"/>
 
   <PropertyGroup>
     <NuGet>"$(BuildDir)\NuGet\NuGet.exe"</NuGet>
   </PropertyGroup>
 
-  <Target Name="PushNuGetPackage" DependsOnTargets="GetSVNVersion">
+  <Target Name="PushNuGetPackage">
 
     <PropertyGroup>
-      <NuGetVersion>$(VersionNumber).$(Revision)</NuGetVersion>
-      <NuGetFile>$(DeliveryDir)\OMS.Deep.$(NuGetVersion).nupkg</NuGetFile>
+      <NuGetFile>$(DeliveryDir)\OMS.Deep.$(ProductVersion)$(BetaFlag).nupkg</NuGetFile>
     </PropertyGroup>
 
-    <Exec Command="$(NuGet) push $(NuGetFile)"/>
+    <!--<Exec Command='$(NuGet) sources Add -Name "SAF" -Source "https://tfs2018.systecs.local/SYSTECS%20TA/_packaging/SAF/nuget/v3/index.json"'/>-->
+    <!--<Exec Command='$(NuGet) push -Source "SAF" -ApiKey VSTS $(NuGetFile)'/>-->
+    <Exec Command='$(NuGet) push -Source "nuget.org" $(NuGetFile)'/>
 
 
   </Target>
 
 </Project>
+

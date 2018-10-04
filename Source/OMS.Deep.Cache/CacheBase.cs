@@ -5,7 +5,6 @@ namespace OMS.Deep.Cache
     /// </summary>
     public class CacheBase
     {
-        private readonly static LockObject SGlobalLockObject = new LockObject();
         private static int s_idCount;
 
 #if CALL_GC
@@ -21,15 +20,9 @@ namespace OMS.Deep.Cache
         }
 #endif
 
-        internal static LockObject GlobalLockObject
-        {
-            get { return SGlobalLockObject; }
-        }
+        internal static LockObject GlobalLockObject { get; } = new LockObject();
 
-        internal LockObject SyncRoot { get; private set; }
-
-        private readonly string _id;
-        private readonly LockObject _mLockObject = new LockObject();
+        internal LockObject SyncRoot { get; }
 
 
         /// <summary>
@@ -45,23 +38,17 @@ namespace OMS.Deep.Cache
                 if( id == null )
                     id = string.Empty;
 
-                _id = id + (++s_idCount);
+                Id = id + (++s_idCount);
             }
         }
 
 
-        internal LockObject LockObject
-        {
-            get { return _mLockObject; }
-        }
+        internal LockObject LockObject { get; } = new LockObject();
 
 
         /// <summary>
         ///     Gets the identifier of the cache.
         /// </summary>
-        public string Id
-        {
-            get { return _id; }
-        }
+        public string Id { get; }
     }
 }

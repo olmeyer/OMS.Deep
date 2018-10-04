@@ -1,3 +1,5 @@
+#region
+
 using System;
 
 
@@ -5,6 +7,8 @@ using System;
 
 using System.Collections.Generic;
 using System.Diagnostics;
+
+#endregion
 
 #endregion
 
@@ -51,6 +55,24 @@ namespace OMS.Deep.Cache
         }
 
 
+        protected override bool OnTestReference( CachedReference<TValue> reference )
+        {
+            return false;
+        }
+
+
+        protected override CachedReference<TValue> CreateCachedReference( TValue target )
+        {
+            return new CachedReference<TValue>( target );
+        }
+
+
+        protected override void OnGetReference( CachedReference<TValue> refernce )
+        {
+            // Just do nothing.
+        }
+
+
         #region IWeakReferenceCache<TKey,TValue> Members
 
         void IWeakReferenceCache<TKey, TValue>.Collect()
@@ -63,15 +85,15 @@ namespace OMS.Deep.Cache
 
         bool IWeakReferenceCache<TKey, TValue>.AutoCollect
         {
-            get { return AutoCollect; }
-            set { AutoCollect = value; }
+            get => AutoCollect;
+            set => AutoCollect = value;
         }
 
 
         bool IWeakReferenceCache<TKey, TValue>.AutoDisposeKey
         {
-            get { return AutoDisposeKey; }
-            set { AutoDisposeKey = value; }
+            get => AutoDisposeKey;
+            set => AutoDisposeKey = value;
         }
 
 
@@ -110,30 +132,9 @@ namespace OMS.Deep.Cache
             return FindKeysFromValue( value );
         }
 
-        object ICache<TKey, TValue>.SyncRoot
-        {
-            get { return SyncRoot; }
-        }
+        object ICache<TKey, TValue>.SyncRoot => SyncRoot;
 
         #endregion
-
-
-        protected override bool OnTestReference( CachedReference<TValue> reference )
-        {
-            return false;
-        }
-
-
-        protected override CachedReference<TValue> CreateCachedReference( TValue target )
-        {
-            return new CachedReference<TValue>( target );
-        }
-
-
-        protected override void OnGetReference( CachedReference<TValue> refernce )
-        {
-            // Just do nothing.
-        }
     }
 }
 

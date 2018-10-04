@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Project DefaultTargets="BuildNuGetPackage" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.5">
+<Project DefaultTargets="BuildNuGetPackage" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
 
-  <Import Project="Directories.proj"/>
+  <Import Project="Base.proj"/>
 
   <PropertyGroup>
     <NuGetTempDir>$(RootDir)\NuGetTemp</NuGetTempDir>
@@ -10,58 +10,27 @@
   </PropertyGroup>
 
 
-  <Target Name="BuildNuGetPackage" DependsOnTargets="GetSVNVersion">
+  <Target Name="BuildNuGetPackage" >
 
     <PropertyGroup>
-      <NuGetVersion>$(VersionNumber).$(Revision)</NuGetVersion>
+      <ProductVersion>3.0.0</ProductVersion>
     </PropertyGroup>
 
     <ItemGroup>
       <Assemblies Include="$(DeliveryDir)\*.dll"/>
       <Assemblies Include="$(DeliveryDir)\*.pdb"/>
-      <LicenseFiles Include="$(LicenseDir)\OMS.Deep License.txt" />
+      <LicenseFiles Include="$(DeliveryDir)\LICENSE" />
     </ItemGroup>
 
 
-    <!--
-    Profile328 .NET Portable Subset (.NET Framework 4, Silverlight 5, Windows 8, Windows Phone 8.1, Windows Phone Silverlight 8) 
-        .NET Framework
-        Silverlight
-        Windows
-        Windows Phone
-        Windows Phone Silverlight
-        Xamarin.Android
-        Xamarin.iOS
- 
-      portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1 
-    -->
-    <Copy SourceFiles="@(Assemblies)" DestinationFolder="$(NuGetTempDir)\lib\net40" />
-    <Copy SourceFiles="@(Assemblies)" DestinationFolder="$(NuGetTempDir)\lib\sl5" />
-    <Copy SourceFiles="@(Assemblies)" DestinationFolder="$(NuGetTempDir)\lib\netcore45" />
-    <Copy SourceFiles="@(Assemblies)" DestinationFolder="$(NuGetTempDir)\lib\wpa81" />
-    <Copy SourceFiles="@(Assemblies)" DestinationFolder="$(NuGetTempDir)\lib\wp8" />
-    <Copy SourceFiles="@(Assemblies)" DestinationFolder="$(NuGetTempDir)\lib\MonoAndroid1" />
-    <Copy SourceFiles="@(Assemblies)" DestinationFolder="$(NuGetTempDir)\lib\MonoTouch1" />
+    <Copy SourceFiles="@(Assemblies)" DestinationFolder="$(NuGetTempDir)\lib\netstandard2.0" />
 
     <Copy SourceFiles="@(LicenseFiles)" DestinationFolder="$(NuGetTempDir)" />
 
-    <Exec Command='$(NuGet) pack "$(Spec)" -Verbose -Symbols -BasePath "$(NuGetTempDir)" -OutputDirectory "$(DeliveryDir)" -Version $(NuGetVersion)'/>
+    <Exec Command='$(NuGet) pack "$(Spec)" -Verbosity detailed -Symbols -BasePath "$(NuGetTempDir)" -OutputDirectory "$(DeliveryDir)" -Version $(ProductVersion)$(BetaFlag)'/>
 
     <!-- Delete NuGet temp folder. -->
     <Exec Command="rd /S /Q $(NuGetTempDir)"/>
-
-  </Target>
-
-
-  <Target Name="PushNuGetPackage" DependsOnTargets="GetSVNVersion">
-
-    <PropertyGroup>
-      <NuGetVersion>$(VersionNumber).$(Revision)</NuGetVersion>
-      <NuGetFile>$(DeliveryDir)\OMS.Deep.$(NuGetVersion).nupkg</NuGetFile>
-    </PropertyGroup>
-
-    <Exec Command="$(NuGet) push $(NuGetFile)"/>
-
 
   </Target>
 

@@ -32,8 +32,8 @@ namespace OMS.Deep.Cache
 
         internal CounterValues CounterValues
         {
-            get { return _counterValues; }
-            set { _counterValues = value ?? new CounterValues(); }
+            get => _counterValues;
+            set => _counterValues = value ?? new CounterValues();
         }
 
 
@@ -63,7 +63,7 @@ namespace OMS.Deep.Cache
             {
                 Count -= _counterValues.Decrement;
             }
-            else if( Count >= 0 )
+            else
             {
                 Count = 0;
 
