@@ -11,10 +11,15 @@
     <ItemGroup>
 
       <!-- Select all C# projects. -->
+      <Solutions Include="$(SourceDir)\**\*.sln" />
       <CSProjects Include="$(SourceDir)\**\*.csproj" />
 
 
     </ItemGroup>
+
+    <!-- Restore all Nuget packages. -->
+    <!-- Restore does not work with list of projects so we have to use the solution. -->
+    <MSBuild Projects="@(Solutions)" Targets="Restore" ContinueOnError="false" />
 
     <!-- Build all C# projects -->
     <MSBuild Projects="@(CSProjects)" Targets="Build" ContinueOnError="false" />

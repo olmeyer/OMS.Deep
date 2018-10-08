@@ -29,17 +29,5 @@ namespace OMS.Deep.Cache
         ///     Removes all invalid cache entries.
         /// </summary>
         void Collect();
-
-        event EventHandler<ObjectRemovedEventArgs<IEnumerable<TKey>>> ObjectRemoved;
-    }
-
-    public class ObjectRemovedEventArgs<TKey> : EventArgs
-    {
-        public ObjectRemovedEventArgs( TKey key )
-        {
-            Key = key;
-        }
-
-        public TKey Key { get; private set; }
     }
 }

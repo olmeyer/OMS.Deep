@@ -80,8 +80,6 @@ namespace OMS.Deep.Cache
             Collect();
         }
 
-        public event EventHandler<ObjectRemovedEventArgs<IEnumerable<TKey>>> ObjectRemoved;
-
 
         bool IWeakReferenceCache<TKey, TValue>.AutoCollect
         {
