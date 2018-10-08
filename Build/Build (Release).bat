@@ -1,6 +1,5 @@
-@call "%VS120COMNTOOLS%vsvars32.bat"
 
-@msbuild "BuildAll.proj" /t:BuildAll /p:Configuration=Release
 
+"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\MSBuild.exe" BuildAll.proj /p:Configuration=Release
 
 pause
